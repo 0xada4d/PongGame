@@ -10,8 +10,6 @@ user interaction. For game logic see the FPongGame class.
 #include "FPongGame.h"
 #include "FPongBall.h"
 
-using int32 = int;
-
 FPongGame PongGame;
 FPongBall PongBall;
 

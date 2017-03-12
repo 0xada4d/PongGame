@@ -4,8 +4,6 @@
 #include "FPongGame.h"
 #include "FPongBall.h"
 
-using int32 = int;
-
 FPongGame::FPongGame()
 {
 	Reset();

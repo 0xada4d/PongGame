@@ -2,8 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-using int32 = int;
-
 class FPongGame
 {
 public:

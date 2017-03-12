@@ -1,8 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-using int32 = int;
-
 class FPongBall
 {
 public:
