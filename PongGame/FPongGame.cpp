@@ -2,19 +2,19 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "FPongGame.h"
+#include "FPongBall.h"
 
-
+using int32 = int;
 
 FPongGame::FPongGame()
 {
 	Reset();
 }
 
-int FPongGame::GetWindowWidth() { return WindowWidth; }
-int FPongGame::GetWindowHeight() { return WindowHeight; }
+float FPongGame::GetWindowWidth() { return WindowWidth; }
+float FPongGame::GetWindowHeight() { return WindowHeight; }
 sf::RectangleShape FPongGame::GetLeftPaddle() { return LeftPaddle; }
 sf::RectangleShape FPongGame::GetRightPaddle() { return RightPaddle; }
-sf::CircleShape FPongGame::GetBall() { return Ball; }
 
 void FPongGame::Reset()
 {
@@ -22,8 +22,12 @@ void FPongGame::Reset()
 	LeftPaddleY = (WindowHeight * .5) - (PaddleHeight * .5);
 	RightPaddleX = (WindowWidth - PaddleWidth);
 	RightPaddleY = (WindowHeight * .5) - (PaddleHeight * .5);
-
-	Ball.setRadius(BallRadius);
+	
+	LeftPaddle.setSize(sf::Vector2f(PaddleWidth, PaddleHeight));
 	LeftPaddle.setPosition(LeftPaddleX, LeftPaddleY);
 	RightPaddle.setPosition(RightPaddleX, RightPaddleY);
+	RightPaddle.setSize(sf::Vector2f(PaddleWidth, PaddleHeight));
+
+	LeftPaddle.setFillColor(GameItemColor);
+	RightPaddle.setFillColor(GameItemColor);
 }

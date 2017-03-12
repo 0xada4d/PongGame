@@ -5,12 +5,19 @@ user interaction. For game logic see the FPongGame class.
 */
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <random>
+#include <ctime>
 #include "FPongGame.h"
+#include "FPongBall.h"
+
+using int32 = int;
 
 FPongGame PongGame;
+FPongBall PongBall;
 
 int main()  // Entry point for our application
 {
+	srand(time(NULL));								// Seed random number generator
 	sf::RenderWindow window(sf::VideoMode(PongGame.GetWindowWidth(), PongGame.GetWindowHeight()), "Hello from SFML");	// Make a window
 
 	while (window.isOpen())							// Keep looping while window is open
@@ -24,7 +31,13 @@ int main()  // Entry point for our application
 
 		window.clear();								// Clear everything from the last run of the while loop
 
-													// Draw Code here
+		PongBall.ChangeBallXDirection();
+		PongBall.ChangeBallYDirection();
+		PongBall.ChangeBallPosition();
+		
+		window.draw(PongBall.GetBall());
+		window.draw(PongGame.GetLeftPaddle());
+		window.draw(PongGame.GetRightPaddle());
 
 		window.display();							// Show everything we just drew
 	}

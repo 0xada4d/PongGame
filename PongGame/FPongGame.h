@@ -1,38 +1,43 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
+
+using int32 = int;
 
 class FPongGame
 {
 public:
+	const float WindowWidth = 1000;
+	const float WindowHeight = 700;
+	const sf::Color GameItemColor = sf::Color::Green;
+
+	const float RIGHT = 1;					// Directions of travel
+	const float LEFT = -1;
+	const float DOWN = 1;
+	const float UP = -1;
+	const float DIRECTION_X[2] = { RIGHT, LEFT };	// Used on Reset, for ball to choose random direction
+	const float DIRECTION_Y[2] = { DOWN, UP };
+
 	FPongGame();
 
-	int GetWindowWidth();
-	int GetWindowHeight();
+	float GetWindowWidth();
+	float GetWindowHeight();
+
 	sf::RectangleShape GetLeftPaddle();		// Get shapes to send to Draw function
 	sf::RectangleShape GetRightPaddle();
-	sf::CircleShape GetBall();
 
 	void Reset();
 
 
 private:
-	const int WindowWidth = 1000;
-	const int WindowHeight = 700;
-	const int PaddleWidth = 5;
-	const int PaddleHeight = 10;
-	const float BallRadius = 4;
+	const float PaddleWidth = 9;
+	const float PaddleHeight = 70;
 
 	sf::RectangleShape LeftPaddle;
 	sf::RectangleShape RightPaddle;
-	sf::CircleShape Ball;
 
-	int LeftPaddleX;						// Positions of various game elememts
-	int LeftPaddleY;
-	int RightPaddleX;
-	int RightPaddleY;
-	int BallX;
-	int BallY;
-
-	
-
+	float LeftPaddleX;						// Positions of various game elements
+	float LeftPaddleY;
+	float RightPaddleX;
+	float RightPaddleY;
 };
