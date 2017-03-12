@@ -1,12 +1,13 @@
+/*
+This class houses variables relied upon by game components.
+*/
+
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 class FPongGame
 {
 public:
-	const float WindowWidth = 1000;
-	const float WindowHeight = 700;
 	const sf::Color GameItemColor = sf::Color::Green;
 
 	const float RIGHT = 1;					// Directions of travel
@@ -18,24 +19,12 @@ public:
 
 	FPongGame();
 
-	float GetWindowWidth();
-	float GetWindowHeight();
-
-	sf::RectangleShape GetLeftPaddle();		// Get shapes to send to Draw function
-	sf::RectangleShape GetRightPaddle();
+	float GetWindowWidth() const;
+	float GetWindowHeight() const;
 
 	void Reset();
 
-
 private:
-	const float PaddleWidth = 9;
-	const float PaddleHeight = 70;
-
-	sf::RectangleShape LeftPaddle;
-	sf::RectangleShape RightPaddle;
-
-	float LeftPaddleX;						// Positions of various game elements
-	float LeftPaddleY;
-	float RightPaddleX;
-	float RightPaddleY;
+	float WindowWidth;
+	float WindowHeight;
 };

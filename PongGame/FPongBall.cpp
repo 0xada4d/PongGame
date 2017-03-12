@@ -1,4 +1,4 @@
-
+#pragma once
 #include <random>
 #include "FPongBall.h"
 #include "FPongGame.h"
@@ -12,7 +12,7 @@ FPongBall::FPongBall()
 
 void FPongBall::Reset()
 {
-	BallPositionX = (Game.WindowWidth * .5);
+	BallPositionX = (Game.GetWindowWidth() * .5);
 	BallPositionY = 0;
 	Ball.setRadius(BallRadius);
 	Ball.setPosition(BallPositionX, BallPositionY);
@@ -32,7 +32,7 @@ void FPongBall::ChangeBallXDirection()						// Check if ball has hit width bound
 		BallDirectionX = Game.RIGHT;
 		return;
 	}
-	if (BallPositionX >= Game.WindowWidth - BallDiameter)
+	if (BallPositionX >= Game.GetWindowWidth() - BallDiameter)
 	{
 		BallDirectionX = Game.LEFT;
 		return;
@@ -47,7 +47,7 @@ void FPongBall::ChangeBallYDirection()						// Check if ball has hit Height boun
 		BallDirectionY = Game.DOWN;
 		return;
 	}
-	if (BallPositionY >= Game.WindowHeight - BallDiameter)
+	if (BallPositionY >= Game.GetWindowHeight() - BallDiameter)
 	{
 		BallDirectionY = Game.UP;
 		return;

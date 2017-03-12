@@ -9,9 +9,12 @@ user interaction. For game logic see the FPongGame class.
 #include <ctime>
 #include "FPongGame.h"
 #include "FPongBall.h"
+#include "FPongPaddle.h"
 
 FPongGame PongGame;
 FPongBall PongBall;
+FPongPaddle AIPaddle;
+FPongPaddle UserPaddle(true);
 
 int main()  // Entry point for our application
 {
@@ -34,8 +37,8 @@ int main()  // Entry point for our application
 		PongBall.ChangeBallPosition();
 		
 		window.draw(PongBall.GetBall());
-		window.draw(PongGame.GetLeftPaddle());
-		window.draw(PongGame.GetRightPaddle());
+		window.draw(AIPaddle.GetPaddle());
+		window.draw(UserPaddle.GetPaddle());
 
 		window.display();							// Show everything we just drew
 	}

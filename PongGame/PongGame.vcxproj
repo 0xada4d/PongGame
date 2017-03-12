@@ -149,10 +149,12 @@
   <ItemGroup>
     <ClInclude Include="FPongBall.h" />
     <ClInclude Include="FPongGame.h" />
+    <ClInclude Include="FPongPaddle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FPongBall.cpp" />
     <ClCompile Include="FPongGame.cpp" />
+    <ClCompile Include="FPongPaddle.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
