@@ -35,6 +35,7 @@ int main()  // Entry point for our application
 		PongBall.ChangeBallXDirection();
 		PongBall.ChangeBallYDirection();
 		PongBall.ChangeBallPosition();
+		UserPaddle.MovePaddle();
 		
 		window.draw(PongBall.GetBall());
 		window.draw(AIPaddle.GetPaddle());

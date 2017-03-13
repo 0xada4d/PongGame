@@ -10,10 +10,12 @@ public:
 
 	sf::RectangleShape GetPaddle();
 
+	void MovePaddle();
+
 private:
 	const float PaddleWidth = 9;
-	const float PaddleHeight = 70;
-	const float PaddleSpeed = 1;
+	const float PaddleHeight = 100;
+	const float PaddleSpeed = .5;
 
 	float PaddleX;
 	float PaddleY;

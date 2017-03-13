@@ -27,3 +27,20 @@ void FPongPaddle::Reset()
 }
 
 sf::RectangleShape FPongPaddle::GetPaddle() { return Paddle; }
+
+void FPongPaddle::MovePaddle()
+{
+	float BottomLimit = Game1.GetWindowHeight() - PaddleHeight;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && PaddleY <= BottomLimit)
+	{
+		PaddleY += PaddleSpeed;
+		Paddle.setPosition(PaddleX, PaddleY);
+		return;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && PaddleY >= 0.0)
+	{
+		PaddleY -= PaddleSpeed;
+		Paddle.setPosition(PaddleX, PaddleY);
+		return;
+	}
+}
