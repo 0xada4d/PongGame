@@ -8,14 +8,19 @@ public:
 	FPongPaddle(bool);
 	void Reset();
 
-	sf::RectangleShape GetPaddle();
+	const float GetPaddleX();
+	const float GetPaddleY();
+	const float GetPaddleWidth();
+	const float GetPaddleHeight();
+	const sf::RectangleShape GetPaddle();
+	const sf::FloatRect GetPaddlePosition();
 
 	void MovePaddle();
 
 private:
-	const float PaddleWidth = 9;
-	const float PaddleHeight = 100;
-	const float PaddleSpeed = .5;
+	const float PaddleWidth = 9.0f;
+	const float PaddleHeight = 200.0f;
+	const float PaddleSpeed = .5f;
 
 	float PaddleX;
 	float PaddleY;

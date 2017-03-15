@@ -32,7 +32,7 @@ int main()  // Entry point for our application
 
 		window.clear();								// Clear everything from the last run of the while loop
 
-		PongBall.ChangeBallXDirection();
+		PongBall.ChangeBallXDirection(PongBall, UserPaddle);
 		PongBall.ChangeBallYDirection();
 		PongBall.ChangeBallPosition();
 		UserPaddle.MovePaddle();

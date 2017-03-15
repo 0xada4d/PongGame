@@ -4,8 +4,8 @@
 FPongGame::FPongGame() { Reset(); }								// Constructor
 void FPongGame::Reset()
 {
-	WindowWidth = 1000;
-	WindowHeight = 700;
+	WindowWidth = 1000.f;
+	WindowHeight = 700.f;
 	return;
 }
 float FPongGame::GetWindowWidth() const { return WindowWidth; }

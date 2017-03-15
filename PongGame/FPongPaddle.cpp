@@ -7,14 +7,14 @@ FPongGame Game1;
 FPongPaddle::FPongPaddle()							// AI paddle constructor
 {
 	PaddleX = Game1.GetWindowWidth() - PaddleWidth;
-	PaddleY = (Game1.GetWindowHeight() * .5) - (PaddleHeight * .5);
+	PaddleY = (Game1.GetWindowHeight() * .5f) - (PaddleHeight * .5f);
 	Reset();
 }
 
 FPongPaddle::FPongPaddle(bool user)					// If the bool is included in constructor, we know that it is constructing a user paddle
 {
 	PaddleX = 0;
-	PaddleY = (Game1.GetWindowHeight() * .5) - (PaddleHeight * .5);
+	PaddleY = (Game1.GetWindowHeight() * .5f) - (PaddleHeight * .5f);
 	Reset();
 }
 
@@ -26,7 +26,12 @@ void FPongPaddle::Reset()
 	return;
 }
 
-sf::RectangleShape FPongPaddle::GetPaddle() { return Paddle; }
+const float FPongPaddle::GetPaddleX() { return PaddleX; }
+const float FPongPaddle::GetPaddleY() { return PaddleY; }
+const float FPongPaddle::GetPaddleWidth() { return PaddleWidth; }
+const float FPongPaddle::GetPaddleHeight() { return PaddleHeight; }
+const sf::RectangleShape FPongPaddle::GetPaddle() { return Paddle; }
+const sf::FloatRect FPongPaddle::GetPaddlePosition() { return Paddle.getGlobalBounds(); }
 
 void FPongPaddle::MovePaddle()
 {
@@ -37,7 +42,7 @@ void FPongPaddle::MovePaddle()
 		Paddle.setPosition(PaddleX, PaddleY);
 		return;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && PaddleY >= 0.0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && PaddleY >= 0.0f)
 	{
 		PaddleY -= PaddleSpeed;
 		Paddle.setPosition(PaddleX, PaddleY);
