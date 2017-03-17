@@ -1,5 +1,5 @@
 /*
-This class houses variables relied upon by game components.
+The FPongGame class contains variables and methods used by other game components.
 */
 
 #pragma once
@@ -11,12 +11,11 @@ public:
 	const sf::Color GameItemColor = sf::Color::Green;
 	int Lives = 3;
 
-	const float RIGHT = 1.f;					// Directions of travel
+	// Directions of travel
+	const float RIGHT = 1.f;					
 	const float LEFT = -1.f;
 	const float DOWN = 1.f;
 	const float UP = -1.f;
-	const float DIRECTION_X[2] = { RIGHT, LEFT };	// Used on Reset, for ball to choose random direction
-	const float DIRECTION_Y[2] = { DOWN, UP };
 
 	FPongGame();
 
@@ -24,7 +23,7 @@ public:
 	float GetWindowHeight() const;
 	bool GetBallOOB() const;
 
-	void BallOOBSwitch();
+	void BallOOBToggle();
 
 	void Reset();
 

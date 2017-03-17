@@ -12,10 +12,10 @@ public:
 	const sf::RectangleShape GetBall();
 	const float GetBallX();
 	const float GetBallY();
-	const sf::FloatRect GetBallPosition();
+	const sf::FloatRect GetBallBounds();
 
 	void ProcessBallXPos(FPongBall&, FPongPaddle&, FPongGame&);
-	void ProcessBallYPos(); 
+	void ProcessBallYPos(FPongGame&); 
 	void ChangeBallPosition();
 	void BallLeadPaddle(FPongPaddle&);					// Function to emulate AI-like behavior in non-user-controlled paddle
 

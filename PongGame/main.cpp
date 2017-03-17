@@ -1,7 +1,7 @@
 /*
 This is the console exe that makes use of the FPongGame class
 This acts as the view in a MVC pattern, and is responsible for all
-user interaction. For game logic see the FPongGame class.
+user interaction. For game logic see the FPongGame, FPongBall, and FPongPaddle classes.
 */
 #pragma once
 #include <SFML/Graphics.hpp>
@@ -21,7 +21,6 @@ FPongPaddle UserPaddle(true);
 
 int main()  // Entry point for our application
 {
-	srand(time(NULL));								// Seed random number generator
 
 	sf::RenderWindow window(sf::VideoMode(PongGame.GetWindowWidth(), PongGame.GetWindowHeight()), "Pong");	// Make a window
 
@@ -45,7 +44,7 @@ int main()  // Entry point for our application
 
 				PongBall.ProcessBallXPos(PongBall, UserPaddle, PongGame);
 
-				if (PongGame.GetBallOOB())						// If the ball goes below x = 0.0, this will be true
+				if (PongGame.GetBallOOB())						// If the ball goes below x = 1.0, this will be true
 				{												
 					PongGame.Lives--;							// Decrement lives and reset the game
 					PongBall.Reset();
@@ -54,7 +53,7 @@ int main()  // Entry point for our application
 					continue;
 				}
 
-				PongBall.ProcessBallYPos();
+				PongBall.ProcessBallYPos(PongGame);
 				PongBall.ChangeBallPosition();
 				PongBall.BallLeadPaddle(AIPaddle);
 				UserPaddle.UserControlPaddle();

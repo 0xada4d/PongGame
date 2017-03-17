@@ -4,7 +4,7 @@
 #include "FPongGame.h"
 #include "FPongPaddle.h"
 
-FPongGame Game;
+FPongGame Game;										// TODO Get rid of these instantiations here, rather use references& as parameters in the functions
 FPongPaddle Paddle1;
 
 FPongBall::FPongBall() { Reset(); }
@@ -22,30 +22,30 @@ void FPongBall::Reset()
 const sf::RectangleShape FPongBall::GetBall() { return Ball; }
 const float FPongBall::GetBallX() { return BallPositionX; }
 const float FPongBall::GetBallY() { return BallPositionY; }
-const sf::FloatRect FPongBall::GetBallPosition() { return Ball.getGlobalBounds(); }
+const sf::FloatRect FPongBall::GetBallBounds() { return Ball.getGlobalBounds(); }
 
 void FPongBall::ProcessBallXPos(FPongBall& Ball, FPongPaddle& Paddle1, FPongGame& Game)		// Check if ball has hit width boundary, and if so choose direction
 {
-	if (Ball.GetBallX() <= 1.0f)											// Ball has crossed left boundary
+	if (Ball.GetBallX() <= 1.0f)															// Ball has crossed left boundary
 	{
-		Game.BallOOBSwitch();
+		Game.BallOOBToggle();
 		return;
 	}
-	if (Ball.GetBallPosition().intersects(Paddle1.GetPaddlePosition()))		// Ball collides with user paddle
+	if (Ball.GetBallBounds().intersects(Paddle1.GetPaddleBounds()))							// Ball collides with user paddle
 	{ 
 		BallDirectionX = Game.RIGHT;
 		return;
 	}
-	if (BallPositionX >= Game.GetWindowWidth() - BallHeight)				// Ball hits right limit of screen
+	if (BallPositionX >= Game.GetWindowWidth() - BallHeight)								// Ball hits right limit of screen
 	{
 		BallDirectionX = Game.LEFT;
 		return;
 	}
-	return;													// If code gets here, ball continues in same direction
+	return;																					// If code gets here, ball continues in same direction
 }
 
-void FPongBall::ProcessBallYPos()						// Check if ball has hit Height boundary, and choose direction based on that
-{														// TODO fix references to objects, maybe pass ref's as parameters?
+void FPongBall::ProcessBallYPos(FPongGame& Game)			// Check if ball has hit Height boundary, and choose direction based on that
+{															// TODO fix references to objects, maybe pass ref's as parameters?
 	if (BallPositionY <= 0.0f)
 	{
 		BallDirectionY = Game.DOWN;

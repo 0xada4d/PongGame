@@ -13,7 +13,7 @@ public:
 	const float GetPaddleWidth();
 	const float GetPaddleHeight();
 	const sf::RectangleShape GetPaddle();
-	const sf::FloatRect GetPaddlePosition();
+	const sf::FloatRect GetPaddleBounds();
 
 	void SetPaddleY(float);
 

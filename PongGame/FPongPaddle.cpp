@@ -33,7 +33,7 @@ const float FPongPaddle::GetPaddleY() { return PaddleY; }
 const float FPongPaddle::GetPaddleWidth() { return PaddleWidth; }
 const float FPongPaddle::GetPaddleHeight() { return PaddleHeight; }
 const sf::RectangleShape FPongPaddle::GetPaddle() { return Paddle; }
-const sf::FloatRect FPongPaddle::GetPaddlePosition() { return Paddle.getGlobalBounds(); }
+const sf::FloatRect FPongPaddle::GetPaddleBounds() { return Paddle.getGlobalBounds(); }
 
 void FPongPaddle::SetPaddleY(float y)									// Function to allow AI Paddle to follow the ball, simulating opponent
 {
