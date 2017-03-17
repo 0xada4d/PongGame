@@ -16,19 +16,21 @@ public:
 	const float DOWN = 1.f;
 	const float UP = -1.f;
 	const float DIRECTION_X[2] = { RIGHT, LEFT };	// Used on Reset, for ball to choose random direction
-
-	bool BallOOB = false;
-
 	const float DIRECTION_Y[2] = { DOWN, UP };
 
 	FPongGame();
 
 	float GetWindowWidth() const;
 	float GetWindowHeight() const;
+	bool GetBallOOB() const;
+
+	void BallOOBSwitch();
 
 	void Reset();
 
 private:
 	float WindowWidth;
 	float WindowHeight;
+
+	bool BallOOB = false;
 };

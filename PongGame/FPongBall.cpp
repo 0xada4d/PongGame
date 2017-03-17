@@ -24,21 +24,19 @@ const float FPongBall::GetBallX() { return BallPositionX; }
 const float FPongBall::GetBallY() { return BallPositionY; }
 const sf::FloatRect FPongBall::GetBallPosition() { return Ball.getGlobalBounds(); }
 
-
-
-void FPongBall::ChangeBallXDirection(FPongBall& Ball, FPongPaddle& Paddle1)						// Check if ball has hit width boundary, and choose direction based on that
+void FPongBall::ProcessBallXPos(FPongBall& Ball, FPongPaddle& Paddle1, FPongGame& Game)		// Check if ball has hit width boundary, and if so choose direction
 {
-	if (Ball.GetBallX() <= 0.0f)
+	if (Ball.GetBallX() <= 1.0f)											// Ball has crossed left boundary
 	{
-		Game.BallOOB = true;
+		Game.BallOOBSwitch();
 		return;
 	}
-	if (Ball.GetBallPosition().intersects(Paddle1.GetPaddlePosition()))
+	if (Ball.GetBallPosition().intersects(Paddle1.GetPaddlePosition()))		// Ball collides with user paddle
 	{ 
 		BallDirectionX = Game.RIGHT;
 		return;
 	}
-	if (BallPositionX >= Game.GetWindowWidth() - BallHeight)
+	if (BallPositionX >= Game.GetWindowWidth() - BallHeight)				// Ball hits right limit of screen
 	{
 		BallDirectionX = Game.LEFT;
 		return;
@@ -46,8 +44,8 @@ void FPongBall::ChangeBallXDirection(FPongBall& Ball, FPongPaddle& Paddle1)					
 	return;													// If code gets here, ball continues in same direction
 }
 
-void FPongBall::ChangeBallYDirection()						// Check if ball has hit Height boundary, and choose direction based on that
-{
+void FPongBall::ProcessBallYPos()						// Check if ball has hit Height boundary, and choose direction based on that
+{														// TODO fix references to objects, maybe pass ref's as parameters?
 	if (BallPositionY <= 0.0f)
 	{
 		BallDirectionY = Game.DOWN;

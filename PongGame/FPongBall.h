@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "FPongPaddle.h"
+#include "FPongGame.h"
 
 class FPongBall
 {
@@ -13,8 +14,8 @@ public:
 	const float GetBallY();
 	const sf::FloatRect GetBallPosition();
 
-	void ChangeBallXDirection(FPongBall&, FPongPaddle&);
-	void ChangeBallYDirection(); 
+	void ProcessBallXPos(FPongBall&, FPongPaddle&, FPongGame&);
+	void ProcessBallYPos(); 
 	void ChangeBallPosition();
 	void BallLeadPaddle(FPongPaddle&);					// Function to emulate AI-like behavior in non-user-controlled paddle
 

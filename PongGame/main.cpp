@@ -31,15 +31,7 @@ int main()  // Entry point for our application
 
 		while (window.isOpen())							// Keep looping while window is open
 		{
-			if (PongGame.BallOOB)						// If the ball goes below x = 0.0, this will be true
-			{												// value gets set in PongBall.cpp under changex function
-				PongGame.Lives--;						// Then I want to reset the game, but doesnt work
-				PongBall.Reset();
-				AIPaddle.Reset();
-				PongGame.Reset();
-				break;
-			}
-
+		
 			if (PongGame.Lives > 0)
 			{
 				sf::Event event;
@@ -51,8 +43,18 @@ int main()  // Entry point for our application
 
 				window.clear();								// Clear everything from the last run of the while loop
 
-				PongBall.ChangeBallXDirection(PongBall, UserPaddle);
-				PongBall.ChangeBallYDirection();
+				PongBall.ProcessBallXPos(PongBall, UserPaddle, PongGame);
+
+				if (PongGame.GetBallOOB())						// If the ball goes below x = 0.0, this will be true
+				{												
+					PongGame.Lives--;							// Decrement lives and reset the game
+					PongBall.Reset();
+					AIPaddle.Reset();
+					PongGame.Reset();
+					continue;
+				}
+
+				PongBall.ProcessBallYPos();
 				PongBall.ChangeBallPosition();
 				PongBall.BallLeadPaddle(AIPaddle);
 				UserPaddle.UserControlPaddle();
@@ -63,6 +65,7 @@ int main()  // Entry point for our application
 
 				window.display();							// Show everything we just drew
 			}
+			else { return 0; }
 
 		}
 	} while (bPlayAgain);
