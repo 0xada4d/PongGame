@@ -6,6 +6,7 @@ void FPongGame::Reset()
 {
 	WindowWidth = 1000.f;
 	WindowHeight = 700.f;
+	Lives = 3;
 	return;
 }
 float FPongGame::GetWindowWidth() const { return WindowWidth; }

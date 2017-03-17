@@ -15,7 +15,9 @@ public:
 	const sf::RectangleShape GetPaddle();
 	const sf::FloatRect GetPaddlePosition();
 
-	void MovePaddle();
+	void SetPaddleY(float);
+
+	void UserControlPaddle();
 
 private:
 	const float PaddleWidth = 9.0f;

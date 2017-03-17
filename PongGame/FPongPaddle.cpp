@@ -1,8 +1,10 @@
 #pragma once
 #include "FPongPaddle.h"
 #include "FPongGame.h"
+#include "FPongBall.h"
 
 FPongGame Game1;
+FPongBall Ball1;
 
 FPongPaddle::FPongPaddle()							// AI paddle constructor
 {
@@ -33,7 +35,18 @@ const float FPongPaddle::GetPaddleHeight() { return PaddleHeight; }
 const sf::RectangleShape FPongPaddle::GetPaddle() { return Paddle; }
 const sf::FloatRect FPongPaddle::GetPaddlePosition() { return Paddle.getGlobalBounds(); }
 
-void FPongPaddle::MovePaddle()
+void FPongPaddle::SetPaddleY(float y)									// Function to allow AI Paddle to follow the ball, simulating opponent
+{
+	float BottomLimit = Game1.GetWindowHeight() - PaddleHeight;
+	if (PaddleY <= BottomLimit && PaddleY >= 0.0f)						// TODO clean this up, may not need this check
+	{
+		Paddle.setPosition(PaddleX, y - (PaddleHeight * .5));
+		return;
+	}
+	return;
+}
+
+void FPongPaddle::UserControlPaddle()									// Move user paddle based on up or down arrow
 {
 	float BottomLimit = Game1.GetWindowHeight() - PaddleHeight;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && PaddleY <= BottomLimit)
@@ -49,3 +62,7 @@ void FPongPaddle::MovePaddle()
 		return;
 	}
 }
+
+
+
+

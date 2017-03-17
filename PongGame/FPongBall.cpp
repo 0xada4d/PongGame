@@ -7,11 +7,7 @@
 FPongGame Game;
 FPongPaddle Paddle1;
 
-FPongBall::FPongBall()
-{
-	Reset();
-}
-
+FPongBall::FPongBall() { Reset(); }
 void FPongBall::Reset()
 {
 	BallPositionX = (Game.GetWindowWidth() * .3f);
@@ -24,12 +20,19 @@ void FPongBall::Reset()
 }
 
 const sf::RectangleShape FPongBall::GetBall() { return Ball; }
+const float FPongBall::GetBallX() { return BallPositionX; }
+const float FPongBall::GetBallY() { return BallPositionY; }
 const sf::FloatRect FPongBall::GetBallPosition() { return Ball.getGlobalBounds(); }
 
 
 
 void FPongBall::ChangeBallXDirection(FPongBall& Ball, FPongPaddle& Paddle1)						// Check if ball has hit width boundary, and choose direction based on that
 {
+	if (Ball.GetBallX() <= 0.0f)
+	{
+		Game.BallOOB = true;
+		return;
+	}
 	if (Ball.GetBallPosition().intersects(Paddle1.GetPaddlePosition()))
 	{ 
 		BallDirectionX = Game.RIGHT;
@@ -63,5 +66,12 @@ void FPongBall::ChangeBallPosition()						// Update ball position based on curre
 	BallPositionX = BallPositionX + BallSpeed * BallDirectionX;
 	BallPositionY = BallPositionY + BallSpeed * BallDirectionY;
 	Ball.setPosition(BallPositionX, BallPositionY);
+	return;
+}
+
+void FPongBall::BallLeadPaddle(FPongPaddle& Paddle)			// Function that sets AI paddle y position to follow ball y position
+{
+	float PaddleY = BallPositionY;
+	Paddle.SetPaddleY(PaddleY);
 	return;
 }
