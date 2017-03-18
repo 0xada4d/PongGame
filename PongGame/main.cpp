@@ -18,10 +18,9 @@ FPongBall PongBall;
 FPongPaddle AIPaddle;
 FPongPaddle UserPaddle(true);
 
-
 int main()  // Entry point for our application
 {
-
+	srand(time(NULL));
 	sf::RenderWindow window(sf::VideoMode(PongGame.GetWindowWidth(), PongGame.GetWindowHeight()), "Pong");	// Make a window
 
 	bool bPlayAgain = true;
@@ -64,7 +63,46 @@ int main()  // Entry point for our application
 
 				window.display();							// Show everything we just drew
 			}
-			else { return 0; }
+			else 
+			{ 
+				sf::Event event;
+				while (window.pollEvent(event))				// Loop through event queue
+				{
+					if (event.type == sf::Event::Closed)	// If close event, close window
+						window.close();
+				}
+				window.clear();
+
+				sf::Font font;
+				font.loadFromFile("Raleway-Medium.ttf");
+				sf::Text GameLossNotice("Game Over", font, 75);									// Loss message
+				GameLossNotice.setFillColor(sf::Color::Green);
+				sf::Text GameLossMessage("Would you like to play again?", font, 40);
+				GameLossMessage.setFillColor(sf::Color::Green);
+				sf::Text PlayAgainY("YES		 |", font, 60);
+				sf::Text PlayAgainN("		  NO", font, 60);
+				PlayAgainY.setFillColor(sf::Color::Green);
+				PlayAgainN.setFillColor(sf::Color::Green);
+
+
+				float GLNoticeWidthHalf = GameLossNotice.getLocalBounds().width * .5f;			// Find center of GameLossNotice Text
+				float GLMessageWidthHalf = GameLossMessage.getLocalBounds().width *.5f;			// Find center of GLMessage Text
+				
+				sf::FloatRect PAYesButton = PlayAgainY.getLocalBounds();
+				sf::FloatRect PANoButton = PlayAgainN.getLocalBounds();
+				float PAYesWidth = PAYesButton.width;
+
+				GameLossNotice.setPosition((PongGame.GetWindowWidth() * .5f) - GLNoticeWidthHalf, PongGame.GetWindowHeight() * .2f); 
+				GameLossMessage.setPosition((PongGame.GetWindowWidth() * .5f) - GLMessageWidthHalf, PongGame.GetWindowHeight() * .4f);
+				PlayAgainY.setPosition((PongGame.GetWindowWidth() * .5f) - PAYesWidth, PongGame.GetWindowHeight() * .7f);
+				PlayAgainN.setPosition((PongGame.GetWindowWidth() * .5f), PongGame.GetWindowHeight() * .7f);
+
+				window.draw(GameLossNotice);
+				window.draw(GameLossMessage);
+				window.draw(PlayAgainY);
+				window.draw(PlayAgainN);
+				window.display();
+			}
 
 		}
 	} while (bPlayAgain);

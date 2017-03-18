@@ -1,5 +1,6 @@
 #pragma once
 #include <random>
+#include <vector>
 #include "FPongBall.h"
 #include "FPongGame.h"
 #include "FPongPaddle.h"
@@ -10,12 +11,14 @@ FPongPaddle Paddle1;
 FPongBall::FPongBall() { Reset(); }
 void FPongBall::Reset()
 {
-	BallPositionX = (Game.GetWindowWidth() * .3f);
+	std::vector<float> BallBeginningX = { .1f, .2f, .3f, .4f, .5f, .6f, .7f, .8f, .9f };
+	int random = rand() % 9;
+	BallPositionX = (Game.GetWindowWidth() * (BallBeginningX[random]));						// Pick a random point at which the ball enters
 	BallPositionY = 0.f;
 	Ball.setSize(sf::Vector2f(BallWidth, BallHeight));
 	Ball.setPosition(BallPositionX, BallPositionY);
 	Ball.setFillColor(Game.GameItemColor);
-	BallDirectionX = Game.RIGHT;					// TODO add random beginning direction
+	BallDirectionX = Game.RIGHT;					
 	BallDirectionY = Game.DOWN;
 }
 
