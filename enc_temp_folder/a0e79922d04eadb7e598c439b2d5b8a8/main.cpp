@@ -71,19 +71,46 @@ int main()  // Entry point for our application
 					if (event.type == sf::Event::Closed)	// If close event, close window
 						window.close();
 
+					if (event.type == sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+					{
+						PongGame.Lives = 3;							// Decrement lives and reset the game
+						PongBall.Reset();
+						AIPaddle.Reset();
+						PongGame.Reset();
+						break;
+					}
+
 				}
 				window.clear();
 
 				sf::Font font;
 				font.loadFromFile("Raleway-Medium.ttf");
-				sf::Text GameLossNotice("Game Over", font, 100);								// Loss message
+				sf::Text GameLossNotice("Game Over", font, 75);									// Loss message
 				GameLossNotice.setFillColor(sf::Color::Green);
-				
-				float GLNoticeWidthHalf = GameLossNotice.getLocalBounds().width * .5f;			// Find center of GameLossNotice Text
+				sf::Text GameLossMessage("Would you like to play again?", font, 40);
+				GameLossMessage.setFillColor(sf::Color::Green);
+				sf::Text PlayAgainY("YES		 |", font, 60);
+				sf::Text PlayAgainN("		  NO", font, 60);
+				PlayAgainY.setFillColor(sf::Color::Green);
+				PlayAgainN.setFillColor(sf::Color::Green);
 
-				GameLossNotice.setPosition((PongGame.GetWindowWidth() * .5f) - GLNoticeWidthHalf, PongGame.GetWindowHeight() * .4f);
-		
+
+				float GLNoticeWidthHalf = GameLossNotice.getLocalBounds().width * .5f;			// Find center of GameLossNotice Text
+				float GLMessageWidthHalf = GameLossMessage.getLocalBounds().width *.5f;			// Find center of GLMessage Text
+				
+				sf::FloatRect PAYesButton = PlayAgainY.getLocalBounds();
+				sf::FloatRect PANoButton = PlayAgainN.getLocalBounds();
+				float PAYesWidth = PAYesButton.width;
+
+				GameLossNotice.setPosition((PongGame.GetWindowWidth() * .5f) - GLNoticeWidthHalf, PongGame.GetWindowHeight() * .2f); 
+				GameLossMessage.setPosition((PongGame.GetWindowWidth() * .5f) - GLMessageWidthHalf, PongGame.GetWindowHeight() * .4f);
+				PlayAgainY.setPosition((PongGame.GetWindowWidth() * .5f) - PAYesWidth, PongGame.GetWindowHeight() * .7f);
+				PlayAgainN.setPosition((PongGame.GetWindowWidth() * .5f), PongGame.GetWindowHeight() * .7f);
+
 				window.draw(GameLossNotice);
+				window.draw(GameLossMessage);
+				window.draw(PlayAgainY);
+				window.draw(PlayAgainN);
 				window.display();
 			}
 
